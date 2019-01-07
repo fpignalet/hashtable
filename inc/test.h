@@ -10,20 +10,20 @@
 
 #include <stdio.h>
 
-static int SUCCESS_COUNT = 0;
-static int FAIL_COUNT = 0;
+static int TEST_SUCCESS_COUNT = 0;
+static int TEST_FAIL_COUNT = 0;
 
 #ifdef TEST
 
 /// @brief Prints the successful test message and
 ///        increments the number of successful
 ///        tests
-#define test_success(M, ...) { fprintf(stderr, "[SUCCESS] " M "\n", ##__VA_ARGS__); SUCCESS_COUNT += 1; }
+#define test_success(M, ...) { fprintf(stderr, "[SUCCESS] " M "\n", ##__VA_ARGS__); TEST_SUCCESS_COUNT += 1; }
 
 /// @brief Prints the failed test message and
 ///        increments the number of failed
 ///        tests
-#define test_fail(M, ...) { fprintf(stderr, "*** FAIL *** " M "\n\n", ##__VA_ARGS__); FAIL_COUNT += 1; }
+#define test_fail(M, ...) { fprintf(stderr, "*** FAIL *** " M "\n\n", ##__VA_ARGS__); TEST_FAIL_COUNT += 1; }
 
 /// @def test(A, M, ...)
 /// @brief A convenient test function
@@ -43,18 +43,20 @@ static int FAIL_COUNT = 0;
 #endif //TEST
 
 /// @brief Returns the number of tests that passed
-int successes() { return SUCCESS_COUNT; }
+int test_successes() { return TEST_SUCCESS_COUNT; }
 /// @brief Returns the number of tests that failed
-int failures() { return FAIL_COUNT; }
+int test_failures() { return TEST_FAIL_COUNT; }
 
 /// @brief Reports the results of all of the tests to stderr
 /// @returns 0 if all tests passed, 1 otherwise
-int report_results()
+int test_report_results()
 {
-    fprintf(stderr, "Test results: [%d successes, %d failures]\n", SUCCESS_COUNT, FAIL_COUNT);
+    fprintf(stderr,
+            "Test results: [%d test_successes, %d test_failures]\n",
+            TEST_SUCCESS_COUNT, TEST_FAIL_COUNT);
 
-    if(FAIL_COUNT > 0)
-        return FAIL_COUNT;
+    if(TEST_FAIL_COUNT > 0)
+        return TEST_FAIL_COUNT;
     else
         return 0;
 }

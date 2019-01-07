@@ -10,8 +10,22 @@
 
 #include "hashfunc.h"
 
+/*! \brief desc.
+ *  \param x something
+ *  \return y something else
+ */
 HashFunc MurmurHash3_x86_32;
+
+/*! \brief desc.
+ *  \param x something
+ *  \return y something else
+ */
 HashFunc MurmurHash3_x86_128;
+
+/*! \brief desc.
+ *  \param x something
+ *  \return y something else
+ */
 HashFunc MurmurHash3_x64_128;
 
 #endif // _MURMURHASH3_H_
