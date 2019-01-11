@@ -16,3 +16,6 @@ hashtable-test
 
 # Vim swap files
 *.swp
+
+.idea/*
+cmake-build-debug/*
